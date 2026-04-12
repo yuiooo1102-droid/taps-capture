@@ -1,0 +1,280 @@
+/* Taps Capture */
+
+.taps-capture-modal {
+  max-width: 480px;
+  max-height: 60vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 0 16px 32px;
+}
+
+/* Mobile: less left padding on narrow screens */
+@media (max-width: 500px) {
+  .taps-capture-modal {
+    padding: 4px 8px 12px 12px;
+  }
+}
+
+.taps-capture-modal h3 {
+  margin: 0 0 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ── Input Group: side by side ─────── */
+
+.taps-input-group {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+/* ── Text Input ────────────────────── */
+
+.taps-textarea {
+  flex: 1;
+  min-height: 80px;
+  resize: vertical;
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 2px solid var(--interactive-accent-hover);
+  background: var(--background-primary);
+  color: var(--text-normal);
+  font-family: var(--font-text);
+  box-sizing: border-box;
+}
+
+.taps-textarea:focus {
+  border-color: var(--interactive-accent);
+  outline: none;
+}
+
+/* ── Audio Section (right column) ──── */
+
+.taps-audio-section {
+  width: 88px;
+  flex-shrink: 0;
+}
+
+/* ── Idle: Record Button ───────────── */
+
+.taps-capture-modal button.taps-audio-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--interactive-accent);
+  color: var(--text-on-accent);
+  font-size: 13px;
+  font-family: var(--font-text);
+  transition: filter 0.15s ease;
+  box-sizing: border-box;
+  padding: 8px;
+  box-shadow: none;
+}
+
+.taps-capture-modal button.taps-audio-btn:hover {
+  filter: brightness(1.1);
+}
+
+.taps-capture-modal button.taps-audio-btn:active {
+  filter: brightness(0.95);
+}
+
+.taps-btn-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.taps-btn-icon .svg-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--text-on-accent);
+}
+
+.taps-btn-text {
+  font-size: 13px;
+}
+
+/* ── Recording State (column) ──────── */
+
+.taps-capture-modal button.taps-recording-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border: 1px solid rgba(229, 62, 62, 0.3);
+  background-color: rgba(229, 62, 62, 0.08);
+  box-sizing: border-box;
+  padding: 8px;
+  cursor: pointer;
+  font-family: var(--font-text);
+  transition: background-color 0.15s ease;
+}
+
+.taps-capture-modal button.taps-recording-col:hover {
+  background-color: rgba(229, 62, 62, 0.14);
+}
+
+.taps-recording-pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e53e3e;
+  flex-shrink: 0;
+  animation: taps-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes taps-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.taps-recording-label {
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-normal);
+}
+
+.taps-stop-hint {
+  font-size: 12px;
+  color: #e53e3e;
+}
+
+/* ── Done State (column) ───────────── */
+
+.taps-done-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--interactive-accent-hover);
+  background: var(--background-primary);
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+.taps-done-icon .svg-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--interactive-accent);
+}
+
+.taps-done-label {
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-normal);
+}
+
+.taps-done-actions {
+  display: flex;
+  gap: 2px;
+}
+
+.taps-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  color: var(--text-muted);
+  -webkit-appearance: none;
+  appearance: none;
+  transition: color 0.1s ease;
+}
+
+.taps-icon-btn:hover {
+  color: var(--text-normal);
+}
+
+.taps-icon-btn .svg-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* ── Tag Selector ──────────────────── */
+
+.taps-tag-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 14px 0 0;
+  flex-wrap: wrap;
+}
+
+.taps-tag-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-right: 2px;
+}
+
+.taps-tag-btn {
+  padding: 3px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--interactive-accent-hover);
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  cursor: pointer;
+  font-size: 13px;
+  font-family: var(--font-text);
+  transition: all 0.12s ease;
+}
+
+.taps-tag-btn:hover {
+  border-color: var(--interactive-accent);
+  background: var(--background-modifier-hover);
+}
+
+.taps-capture-modal button.taps-tag-active {
+  background-color: var(--interactive-accent);
+  color: var(--text-on-accent);
+  border-color: var(--interactive-accent);
+}
+
+/* ── Submit Button ─────────────────── */
+
+.taps-capture-modal button.taps-submit-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 9px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid var(--background-modifier-border);
+  background-color: var(--background-secondary);
+  color: var(--text-faint);
+  cursor: default;
+  font-family: var(--font-text);
+  transition: all 0.2s ease;
+}
+
+.taps-capture-modal button.taps-submit-btn.taps-submit-active {
+  background-color: var(--interactive-accent);
+  color: var(--text-on-accent);
+  border-color: var(--interactive-accent);
+  cursor: pointer;
+}
+
+.taps-capture-modal button.taps-submit-btn.taps-submit-active:hover {
+  filter: brightness(1.1);
+}

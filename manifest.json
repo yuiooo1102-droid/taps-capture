@@ -1,0 +1,10 @@
+{
+  "id": "taps-capture",
+  "name": "Taps Capture",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "description": "Capture text and audio to daily notes with tag classification. Supports both desktop and mobile.",
+  "author": "wh",
+  "authorUrl": "https://github.com/niwh",
+  "isDesktopOnly": false
+}
