@@ -1,7 +1,7 @@
 import { Plugin } from "obsidian";
 import { CaptureModal } from "./capture-modal";
 import { CaptureSettingTab } from "./settings-tab";
-import { setLocale, t } from "./i18n";
+import { setLocale } from "./i18n";
 import { DEFAULT_SETTINGS, type CaptureSettings } from "./types";
 
 export default class CapturePlugin extends Plugin {
@@ -13,11 +13,11 @@ export default class CapturePlugin extends Plugin {
 
     this.addCommand({
       id: "open-capture",
-      name: "Quick Capture",
+      name: "Quick capture",
       callback: () => new CaptureModal(this.app, this).open(),
     });
 
-    this.addRibbonIcon("mic", "Quick Capture", () => {
+    this.addRibbonIcon("mic", "Quick capture", () => {
       new CaptureModal(this.app, this).open();
     });
 

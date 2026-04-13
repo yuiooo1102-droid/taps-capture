@@ -14,7 +14,7 @@ export class CaptureSettingTab extends PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
 
-    containerEl.createEl("h2", { text: t("settingsTitle") });
+    new Setting(containerEl).setName(t("settingsTitle")).setHeading();
 
     new Setting(containerEl)
       .setName(t("settingLanguage"))
@@ -40,7 +40,7 @@ export class CaptureSettingTab extends PluginSettingTab {
       .setDesc(t("settingTagsDesc"))
       .addText((text) =>
         text
-          .setPlaceholder("idea,diary,meeting")
+          .setPlaceholder("idea, diary, meeting")
           .setValue([...this.plugin.settings.tags].join(","))
           .onChange(async (value) => {
             const tags = value

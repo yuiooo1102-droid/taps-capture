@@ -1,4 +1,4 @@
-import { Modal, Notice, setIcon, type App, type TFile } from "obsidian";
+import { Modal, Notice, setIcon, TFile, type App } from "obsidian";
 import { AudioRecorder } from "./audio-recorder";
 import { t } from "./i18n";
 import type CapturePlugin from "./main";
@@ -47,7 +47,7 @@ export class CaptureModal extends Modal {
     });
     this.submitBtn.addEventListener("click", () => {
       this.blurInput();
-      this.handleSubmit();
+      void this.handleSubmit();
     });
 
     this.textArea.addEventListener("input", () => this.updateSubmitState());
@@ -83,7 +83,7 @@ export class CaptureModal extends Modal {
       const iconEl = btn.createSpan({ cls: "taps-btn-icon" });
       setIcon(iconEl, "mic");
       btn.createSpan({ text: t("record"), cls: "taps-btn-text" });
-      btn.addEventListener("click", () => this.startRecording());
+      btn.addEventListener("click", () => { void this.startRecording(); });
     }
 
     if (state === "recording") {
@@ -127,7 +127,7 @@ export class CaptureModal extends Modal {
       setIcon(retryBtn, "rotate-ccw");
       retryBtn.addEventListener("click", () => {
         this.recorder.reset();
-        this.startRecording();
+        void this.startRecording();
       });
     }
 
@@ -218,7 +218,11 @@ export class CaptureModal extends Modal {
     const parts: string[] = [];
     parts.push(`\n### ${time} #${this.selectedTag}\n`);
     if (text) parts.push(`\n${text}\n`);
-    if (audioPath) parts.push(`\n![[${audioPath}]]\n`);
+    if (audioPath) {
+      parts.push(`\n![[${audioPath}]]\n`);
+      const stem = audioPath.replace(/\.[^.]+$/, "");
+      parts.push(`![[${stem}]]\n`);
+    }
 
     const block = parts.join("");
     const dailyNote = await this.getOrCreateDailyNote();
@@ -234,7 +238,7 @@ export class CaptureModal extends Modal {
     const filePath = `${folder}/${dateStr}.md`;
 
     const existing = this.app.vault.getAbstractFileByPath(filePath);
-    if (existing) return existing as TFile;
+    if (existing instanceof TFile) return existing;
 
     const folderExists = this.app.vault.getAbstractFileByPath(folder);
     if (!folderExists) {
